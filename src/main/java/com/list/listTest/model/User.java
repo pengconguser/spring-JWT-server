@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")//引入@Table注解，name赋值为表名
-
 public class User extends baseModel {
 
     public User(){

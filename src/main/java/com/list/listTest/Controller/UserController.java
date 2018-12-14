@@ -35,6 +35,10 @@ public class UserController {
         if (user.getPassword().length() < 32) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         }
+        //加上默认用户角色
+        if(user.getRole() == null){
+            user.setRole("ROLE_USER");
+        }
 
         User result_user = userRespository.save(user);
         Map<String,Object> result=response.insert_response(result_user);
