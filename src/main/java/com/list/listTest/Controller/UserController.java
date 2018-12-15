@@ -1,6 +1,6 @@
 package com.list.listTest.Controller;
 
-import com.list.listTest.Respository.UserRespository;
+import com.list.listTest.Respository.UserRepository;
 import com.list.listTest.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,14 +15,14 @@ import java.util.Map;
 public class UserController {
 
     @Autowired
-    private UserRespository userRespository;
+    private UserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/user")
     public Map<String,Object> index() {
-        List<User> users = userRespository.findUserAll();
+        List<User> users = userRepository.findUserAll();
         LinkedHashMap<String,Object> map=new LinkedHashMap<String, Object>();
         map.put("data",users);
         map.put("message",response.data_response_message);
@@ -40,7 +40,7 @@ public class UserController {
             user.setRole("ROLE_USER");
         }
 
-        User result_user = userRespository.save(user);
+        User result_user = userRepository.save(user);
         Map<String,Object> result=response.insert_response(result_user);
         return result;
     }
@@ -51,7 +51,7 @@ public class UserController {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         }
 
-        User result_user=userRespository.save(user);
+        User result_user= userRepository.save(user);
         Map<String,Object> result=response.update_response(result_user);
 
         return result;
@@ -59,7 +59,7 @@ public class UserController {
 
     @PostMapping("/user/name")
     public void getName(@RequestBody Map<String,Object> values){
-        User user=userRespository.findByUsername((String)values.get("name"));
+        User user= userRepository.findByUsername((String)values.get("name"));
         System.out.println(values);
     }
 }

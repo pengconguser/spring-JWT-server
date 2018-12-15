@@ -16,4 +16,9 @@ public class TestController {
         return "test boot";
     }
 
+    @GetMapping("/getTest")
+    public String test(){
+        return "测试用路由";
+    }
+
 }

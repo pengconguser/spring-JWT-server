@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.awt.*;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "articles")
 public class Article extends baseModel {
 
     public Article(){
