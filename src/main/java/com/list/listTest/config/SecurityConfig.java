@@ -41,8 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 // 测试用资源路由，需要验证了的用户才能访问
-                .antMatchers("/test").authenticated()
-                .antMatchers(HttpMethod.GET,"/user").hasAuthority("ROLE_USER")
+//                .antMatchers("/test").authenticated()
+//                .antMatchers(HttpMethod.GET,"/user").hasAuthority("ROLE_USER")
                 // 其他都放行了
                 .anyRequest().permitAll()
                 .and()

@@ -13,7 +13,7 @@ public class TestController {
 
     @RequestMapping("/test")
     public String get(){
-        return "test boot";
+        return "欢迎访问专门为layne配置的服务器";
     }
 
     @GetMapping("/getTest")
