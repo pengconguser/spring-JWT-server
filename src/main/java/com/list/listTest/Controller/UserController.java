@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -20,7 +21,7 @@ public class UserController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @GetMapping("/user")
+    @GetMapping
     public Map<String,Object> index() {
         List<User> users = userRepository.findUserAll();
         LinkedHashMap<String,Object> map=new LinkedHashMap<String, Object>();
@@ -30,7 +31,7 @@ public class UserController {
         return map;
     }
 
-    @PostMapping("/user")
+    @PostMapping
     public Map<String,Object> store(@RequestBody User user) {
         if (user.getPassword().length() < 32) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -45,7 +46,7 @@ public class UserController {
         return result;
     }
 
-    @PutMapping("/user")
+    @PutMapping
     public Map<String,Object> update(@RequestBody User user){
         if (user.getPassword().length() < 32) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -57,7 +58,7 @@ public class UserController {
         return result;
     }
 
-    @PostMapping("/user/name")
+    @PostMapping("/name")
     public void getName(@RequestBody Map<String,Object> values){
         User user= userRepository.findByUsername((String)values.get("name"));
         System.out.println(values);
